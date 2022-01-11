@@ -72,29 +72,32 @@
 			<span class="file-load-info"></span>
 			<img src="./img/highlight_off_white_24dp.svg" alt="remove" class="remove-file">
 		</div>
-		<div class="file-scramble-options">
-			<div class="file-scramble-options-help" onclick="displayHelp(event);">
-				<span>Mode</span>
-				<img src="./img/help_outline_white_24dp.svg" alt="Help?">
-				<div class="help-text" hidden>
-					<strong>Everything</strong>:  All loottables that are found will be scrambled. <br>
-					<strong>Folder intern</strong>: So e.g. only blocks get mixed up, without the chance of a block for example dropping a
-						whole chest worth of loot. Choose this for a little less crazyness.
+		<div class="scramble-options">
+			<div class="file-scramble-options">
+				<div class="file-scramble-options-help" onclick="displayHelp(event);">
+					<span>Mode</span>
+					<img src="./img/help_outline_white_24dp.svg" alt="Help?">
+					<div class="help-text" hidden>
+						<strong>Everything</strong>: All loottables that are found will be scrambled. <br>
+						<strong>Folder intern</strong>: So e.g. only blocks get mixed up, without the chance of a block for example
+						dropping a whole chest worth of loot. Choose this for a little less crazyness.
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="folder-scramble-options">
-			<div class="folder-scramble-options-headline">
-				<span>Folders to include</span>
-				<button type="button" onclick="selectFolders(event, true)">all</button><button type="button" onclick="selectFolders(event, false)">none</button>
+			<div class="folder-scramble-options">
+				<div class="folder-scramble-options-headline">
+					<span>Folders to include</span>
+					<button type="button" onclick="selectFolders(event, true)">all</button><button type="button"
+						onclick="selectFolders(event, false)">none</button>
+				</div>
 			</div>
-		</div>
-		<hr>
-		<div class="scramble-info-wrapper">
-			<button type="button" class="scramble-button" onclick="scramble(event)">Scramble!</button>
-			<span class="scramble-info"></span>
-			<progress class="scramble-progress-bar" hidden></progress>
-			<span class="scramble-progress"></span>
+			<hr>
+			<div class="scramble-info-wrapper">
+				<button type="button" class="scramble-button" onclick="scramble(event)">Scramble!</button>
+				<span class="scramble-info"></span>
+				<progress class="scramble-progress-bar" hidden></progress>
+				<span class="scramble-progress"></span>
+			</div>
 		</div>
 	</form>
 </template>

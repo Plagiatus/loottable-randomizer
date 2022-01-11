@@ -154,9 +154,7 @@ async function updateFileList() {
 			}
 
 		} else {
-			scrambleOptions.hidden = true;
-			fileEntry.querySelector("folder-scramble-options").hidden = true;
-			fileEntry.querySelector("scramble-info-wrapper").hidden = true;
+			fileEntry.querySelector(".scramble-options").hidden = true;
 		}
 
 		fileList.appendChild(fileEntry);
@@ -225,7 +223,7 @@ function selectFolders(event, all) {
 
 async function scramble(event) {
 	let btn = event.target;
-	let form = btn.parentElement.parentElement;
+	let form = btn.parentElement.parentElement.parentElement;
 	let info = form.querySelector(".scramble-info");
 	info.innerText = "";
 
