@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Loottable Randomizer</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="scripts/jszip.min.js"></script>
+	<script src="scripts/jszip-utils.min.js"></script>
+	<script src="scripts/file-saver.min.js"></script>
+	<script src="scripts/script.js" defer></script>
+</head>
+
+<body ondragover="prevDefault(event);" ondrop="prevDefault(event);">
+	<header>
+		<h1>Loottable Randomizer</h1>
+	</header>
+	<main>
+		<div id="vanilla-or-custom-wrapper">
+			<!-- <input hidden type="radio" name="vanilla" id="vanilla_yes" value="vanilla">
+			<input hidden type="radio" name="vanilla" id="vanilla_no" value="custom"> -->
+			<h2>Choose a file</h2>
+
+			<div class="flex">
+				<div>
+					<h3>Vanilla</h3>
+					<select name="vanillaVersion" id="vanilla-version">
+						<option value="18">1.18</option>
+						<option value="17">1.17</option>
+						<option value="16">1.16</option>
+					</select>
+					<button onclick="addSelectedVillaFile()">Add</button>
+				</div>
+				<div>
+					<h3>Custom</h3>
+					<div id="file-drop-zone" ondrop="fileDrop(event);" onclick="fileClick()">
+						<img src="./img/add_circle_outline_white_24dp.svg" alt="" id="file-drop-zone-icon">
+						<span>drag & drop your zipped datapack here</span>
+						<span id="dnd-divider">- or -</span>
+						<span>click to upload</span>
+						<input hidden type="file" name="customFile" id="custom-file" accept=".zip" onchange="chooseFiles()"
+							multiple="true">
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div id="file-drop-list"></div>
+		<!-- <div id="scramble-mode-folders-wrapper">
+			<h3>Which top level folders do you want to include?</h3>
+			<div id="scramble-mode-folders-display"></div>
+		</div>
+		<div id="confirm-wrapper">
+			<p>Does everything look good?</p>
+			<button id="confirm">Scramble!</button>
+		</div>
+		<div id="progress-wrapper">
+			<label>Scrambling... <progress id="progressbar" value="10" max="100"></progress></label>
+		</div> -->
+	</main>
+</body>
+
+<template id="template-selected-file">
+	<form class="file-wrapper" name="foo">
+		<div class="selected-file">
+			<img src="./img/folder_zip_white_24dp.svg" alt="" class="file-icon">
+			<img src="./img/question_mark_white_24dp.svg" alt="" class="file-icon wrong-file" hidden>
+			<span class="vanilla hidden">v</span>
+			<span class="file-name"></span>
+			<span class="file-load-info"></span>
+			<img src="./img/highlight_off_white_24dp.svg" alt="remove" class="remove-file">
+		</div>
+		<div class="file-scramble-options">
+			<div class="file-scramble-options-help" onclick="displayHelp(event);">
+				<span>Mode</span>
+				<img src="./img/help_outline_white_24dp.svg" alt="Help?">
+				<div class="help-text" hidden>
+					<strong>Everything</strong>:  All loottables that are found will be scrambled. <br>
+					<strong>Folder intern</strong>: So e.g. only blocks get mixed up, without the chance of a block for example dropping a
+						whole chest worth of loot. Choose this for a little less crazyness.
+				</div>
+			</div>
+		</div>
+		<div class="folder-scramble-options">
+			<div class="folder-scramble-options-headline">
+				<span>Folders to include</span>
+				<button type="button" onclick="selectFolders(event, true)">all</button><button type="button" onclick="selectFolders(event, false)">none</button>
+			</div>
+		</div>
+		<hr>
+		<div class="scramble-info-wrapper">
+			<button type="button" class="scramble-button" onclick="scramble(event)">Scramble!</button>
+			<span class="scramble-info"></span>
+			<progress class="scramble-progress-bar" hidden></progress>
+			<span class="scramble-progress"></span>
+		</div>
+	</form>
+</template>
+
+</html>
