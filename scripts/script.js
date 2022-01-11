@@ -155,6 +155,8 @@ async function updateFileList() {
 
 		} else {
 			scrambleOptions.hidden = true;
+			fileEntry.querySelector("folder-scramble-options").hidden = true;
+			fileEntry.querySelector("scramble-info-wrapper").hidden = true;
 		}
 
 		fileList.appendChild(fileEntry);
@@ -243,12 +245,12 @@ async function scramble(event) {
 	let progressBar = form.querySelector(".scramble-progress-bar");
 	let progressSpan = form.querySelector(".scramble-progress");
 	progressBar.hidden = false;
-	
+
 	let result = await scrambleNow(form.dataset.name, mode, folders, progressSpan, progressBar);
-	let blob = await result.generateAsync({type: "blob"});
+	let blob = await result.generateAsync({ type: "blob" });
 	let newFileName = form.dataset.name.substring(0, form.dataset.name.length - 4) + "-scrambled.zip"
 	saveAs(blob, newFileName);
-	
+
 	progressSpan.innerText = "";
 	progressBar.hidden = true;
 	btn.disabled = false;
@@ -270,7 +272,7 @@ async function scrambleNow(nameOfInput, mode, folders, pSpan, pBar) {
 			updateProgress(current++, total, "Reading Files");
 		}
 		current = 0;
-		
+
 		for (let file of fileNames) {
 			let randomContent = getRandomArrayEntry(fileContents);
 			await zip.file(file, randomContent);
@@ -285,7 +287,7 @@ async function scrambleNow(nameOfInput, mode, folders, pSpan, pBar) {
 
 	return zip;
 
-	function updateProgress(current, total, text = "Scrambling Files"){
+	function updateProgress(current, total, text = "Scrambling Files") {
 		pBar.value = current;
 		pBar.max = total;
 		pSpan.innerText = `${text}: ${current} / ${total}`;
